@@ -32,16 +32,16 @@ if st.button("🔥 Escanear Mercado Agora"):
         
         with st.spinner('Minerando dados da Shopee... Isso leva cerca de 1 minuto.'):
             # Usando um Actor mais acessível para evitar erros de permissão
-            run_input = {
-                "keyword": termo,
-                "location": "Brazil",
-                "maxItems": 30,
-                "proxyConfiguration": { "useApifyProxy": True }
-            }
-            
-            run = client.actor("shoppre/shopee-scraper").call(run_input=run_input)
-            results = list(client.dataset(run["defaultDatasetId"]).iterate_items())
-            
+            # Substitua o bloco de busca por este:
+        run_input = {
+            "keyword": termo,
+            "location": "Brazil",
+            "maxItems": 20,
+            "proxyConfiguration": { "useApifyProxy": True }
+        }
+        
+        # Usando o nome exato do Actor que apareceu no seu print
+        run = client.actor("fatihtahta/shopee-scraper").call(run_input=run_input)
             if not results:
                 st.warning("Nenhum dado retornado. Tente um termo mais simples.")
             else:
